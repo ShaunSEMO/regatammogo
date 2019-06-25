@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->date('date');
+            
         });
     }
 

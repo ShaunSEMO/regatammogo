@@ -21,7 +21,7 @@
 
     <!-- JS -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <title>Spyder_Webs</title>
+    <title>Valrey</title>
   </head>
   <body id='body'>
 
