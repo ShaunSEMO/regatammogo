@@ -30,7 +30,7 @@
 <div class="card">
     <div class="card-header">Create post</div>
     <div class="card-body">
-        {!! Form::open(['action' => 'DashboardController@storepost', 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['action' => 'DashboardController@storePost', 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
 
         <div class="form-group">
             {{ Form::label('image', 'Image')}}
@@ -54,7 +54,7 @@
             <textarea style="height: 250px;" name="body" class="form-control" id="exampleFormControlTextarea1" placeholder="Article..." id="summary-ckeditor"></textarea>
         </div> --}}
         
-        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+        {{ Form::submit('Publish', ['class' => 'btn btn-primary']) }}
 
         {!! Form::close() !!}
     </div>

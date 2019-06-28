@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Picture;
+use DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class GalleryController extends Controller
 {
@@ -13,7 +17,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('gallery.gallery');
+        $pictures = DB::table('pictures')->orderBy('id', 'DESC')->paginate(5);
+        return view('gallery.gallery', compact(['pictures']));
     }
 
     /**
@@ -23,7 +28,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/t@k3m3t0@dm!n/image/create');
     }
 
     /**
