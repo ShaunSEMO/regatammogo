@@ -1,6 +1,6 @@
-@extends('layouts.index')
+@extends('layouts.app')
 
-@section('create')
+@section('content')
 
 @if(count($errors)>0)
     @foreach($errors->all() as $error)
@@ -22,10 +22,15 @@
     </div>
 @endif
 
-<h1>Edit post</h1>
-<br>
+
 <div class="container">
-    {!! Form::open(['action' => ['BlogController@update', $post->id], 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+<div class="row justify-content-center">
+<div class="col-md-8">
+
+<div class="card">
+    <div class="card-header">Edit post</div>
+    <div class="card-body">
+        {!! Form::open(['action' => ['DashboardController@updatePost', $post->id], 'files' => true, 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
 
         <div class="form-group">
             {{ Form::label('image', 'Image')}}
@@ -41,17 +46,23 @@
     
         <div class="form-group">
             {{ Form::label('text', 'Text') }}
-            {{ Form::textArea('body', $post->body, ['class' => 'form-control', 'placeholder' => 'Article...', 'id' => 'summary-ckeditor']) }}
-            
+            {{ Form::textArea('body', $post->body, ['id' => 'summary-ckeditor','class' => 'form-control', 'placeholder' => 'Article...']) }}
         </div>
-        {{ Form::hidden('_method','PUT') }}
-        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+        
 
-    {!! Form::close() !!}
+        {{-- <div class="form-group">
+            <label>Text</label>
+            <textarea style="height: 250px;" name="body" class="form-control" id="exampleFormControlTextarea1" placeholder="Article..." id="summary-ckeditor"></textarea>
+        </div> --}}
+        
+        {{Form::hidden('_method', 'PUT')}}
+        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+        {!! Form::close() !!}
+    </div>
 </div>
 
-<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
-<script>
-    CKEDITOR.replace( 'summary-ckeditor' );
-</script>
+</div>
+</div>
+</div>
+
 @endsection

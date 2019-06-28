@@ -1,7 +1,1 @@
-@extends('layouts.index')
-
-@section('gallery')
-
-<h1>Gallery</h1>
-
-@endsection
+<h1>Hello World</h1>
