@@ -13,9 +13,7 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::get('/about', function () {
-    return View::make('home.about');
-});
+Route::get('/about', 'AboutController@index');
 
 Route::resource('blog', 'BlogController');
 
@@ -43,7 +41,7 @@ Route::get('/t@k3m3t0@dm!n', 'DashboardController@index')->name('dashboard');
 
 //BLOG
 Route::get('/t@k3m3t0@dm!n/blog/create', 'DashboardController@createPost')->name('createPost');
-Route::post('/t@k3m3t0@dm!n', 'DashboardController@storePost')->name('storePost');
+Route::post('/t@k3m3t0@dm!n/blog', 'DashboardController@storePost')->name('storePost');
 
 Route::get('/t@k3m3t0@dm!n/blog/{blog}/edit', 'DashboardController@edit')->name('updatePost');
 Route::put('/t@k3m3t0@dm!n/blog/{blog}', 'DashboardController@updatePost')->name('updatePost');
@@ -55,3 +53,7 @@ Route::get('/t@k3m3t0@dm!n/gallery/create', 'DashboardController@createpicture')
 Route::post('/t@k3m3t0@dm!n', 'DashboardController@storePicture')->name('storePicture');
 
 Route::delete('/t@k3m3t0@dm!n/gallery/{gallery}', 'DashboardController@destroyPicture')->name('deletePicture');
+
+// ABOUT
+Route::get('/t@k3m3t0@dm!n/about/{about}/edit', 'DashboardController@editAbout')->name('editAbout');
+Route::put('/t@k3m3t0@dm!n/about/{about}', 'DashboardController@updateAbout')->name('updatePost');
