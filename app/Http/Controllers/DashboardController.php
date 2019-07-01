@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Picture;
 use App\About;
+use App\Item;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+
 
 class DashboardController extends Controller
 {
@@ -33,8 +35,9 @@ class DashboardController extends Controller
         $abouts = $abouts->get();
         $posts = DB::table('posts')->orderBy('id', 'DESC')->paginate(3);
         $pictures = DB::table('pictures')->orderBy('id', 'DESC')->paginate(3);
+        $items = DB::table('items')->orderBy('id', 'DESC')->paginate(3);
 
-        return view('dashboard.admin', compact(['posts', 'pictures', 'abouts']));
+        return view('dashboard.admin', compact(['posts', 'pictures', 'abouts', 'items']));
     }
 
 
@@ -48,7 +51,7 @@ class DashboardController extends Controller
     public function storePost(Request $request)
     {
         $this->validate($request, [
-            'image' => 'image|max:1999',
+            'image' => 'required|image|max:1999',
             'title' => 'required',
             'body' => 'required',
         ]);
@@ -113,7 +116,12 @@ class DashboardController extends Controller
         }
 
         $post = Post::find($id);
-        $post->image = 'storage/img/blogimages/'.$request->file('image')->getClientOriginalName();
+        $img = $request->file('image');
+        if ($img != null) {
+            $post->image = 'storage/img/blogimages/'.$img->getClientOriginalName();
+        } else {
+            $post->image = $post->image;
+        }
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->save();
@@ -212,6 +220,93 @@ class DashboardController extends Controller
         $about->body = $request->input('body');
         $about->save();
 
+        return redirect('/t@k3m3t0@dm!n');
+    }
+
+    //SHOP FUNCTIONS
+
+    public function addItem() {
+        return view('shop.addItem');
+    }
+
+    public function storeItem(Request $request) {
+        
+        //File uploading
+        if($request->hasFile('image')) {
+            //Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('public/img/shopimages', $filenameWithExt);
+
+            //Get just filename
+            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            // //Get just the extension
+            // $extension = $request->file('image')->getOriginalClientExtension();
+            // // Filename to store
+
+            // $fileNameToStore = $filename.$extension;
+        } else {
+            $fileNameToStore = 'No image here.';
+        }
+
+        //Store new item
+        $item = new Item;
+        $item->image = 'storage/img/shopimages/'.$request->file('image')->getClientOriginalName();
+        $item->name = $request->input('name');
+        $item->color = $request->input('color');
+        $item->size = $request->input('size');
+        $item->description = $request->input('description');
+        $item->price = $request->input('price');
+        $item->save();
+
+        return redirect('/t@k3m3t0@dm!n');
+        
+    }
+
+    public function editItem($id) {
+        $item = Item::find($id);
+        return view('shop.editItem', compact(['item']));
+    }
+
+    public function updateItem(Request $request, $id) {
+
+        $this->validate($request, [
+            'image' => 'required',
+        ]);
+
+        if($request->hasFile('image')) {
+            //Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('public/img/blogimages', $filenameWithExt);
+
+            //Get just filename
+            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            // //Get just the extension
+            // $extension = $request->file('image')->getOriginalClientExtension();
+            // // Filename to store
+
+            // $fileNameToStore = $filename.$extension;
+        } else {
+            $fileNameToStore = 'No image here.';
+        }
+
+        $item = Item::find($id);
+        $item->image = 'storage/img/blogimages/'.$request->file('image')->getClientOriginalName();
+        $item->name = $request->input('name');
+        $item->color = $request->input('color');
+        $item->size = $request->input('size');
+        $item->description = $request->input('description');
+        $item->price = $request->input('price');
+        $item->save();
+
+        return redirect('/t@k3m3t0@dm!n');
+          
+    }
+
+    public function deleteItem($id) {
+        $item = Item::find($id);
+        $item->delete();
         return redirect('/t@k3m3t0@dm!n');
     }
     

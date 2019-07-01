@@ -39,7 +39,7 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/t@k3m3t0@dm!n/image/create');
     }
 
     /**
@@ -50,7 +50,7 @@ class GalleryController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/t@k3m3t0@dm!n/image/create');
     }
 
     /**
@@ -61,7 +61,7 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect('/t@k3m3t0@dm!n/image/create');
     }
 
     /**
@@ -73,7 +73,7 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect('/t@k3m3t0@dm!n/image/create');
     }
 
     /**
@@ -84,6 +84,6 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect('/t@k3m3t0@dm!n/image/create');
     }
 }

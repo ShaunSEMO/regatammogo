@@ -19,6 +19,7 @@ Route::resource('blog', 'BlogController');
 
 Route::resource('gallery', 'GalleryController');
 
+
 // Authentication Routes...
 Route::get('spyderwebs_login_@dm!n', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('spyderwebs_login_@dm!n', 'Auth\LoginController@login');
@@ -39,21 +40,27 @@ Route::get('/t@k3m3t0@dm!n', 'DashboardController@index')->name('dashboard');
 
 //Content Management Routes
 
-//BLOG
+    //BLOG
 Route::get('/t@k3m3t0@dm!n/blog/create', 'DashboardController@createPost')->name('createPost');
 Route::post('/t@k3m3t0@dm!n/blog', 'DashboardController@storePost')->name('storePost');
-
 Route::get('/t@k3m3t0@dm!n/blog/{blog}/edit', 'DashboardController@edit')->name('updatePost');
 Route::put('/t@k3m3t0@dm!n/blog/{blog}', 'DashboardController@updatePost')->name('updatePost');
-
 Route::delete('/t@k3m3t0@dm!n/blog/{blog}', 'DashboardController@destroyPost')->name('deletePost');
 
-//GALLERY
+    //GALLERY
 Route::get('/t@k3m3t0@dm!n/gallery/create', 'DashboardController@createpicture')->name('createPicture');
 Route::post('/t@k3m3t0@dm!n', 'DashboardController@storePicture')->name('storePicture');
-
 Route::delete('/t@k3m3t0@dm!n/gallery/{gallery}', 'DashboardController@destroyPicture')->name('deletePicture');
 
-// ABOUT
+    // ABOUT
 Route::get('/t@k3m3t0@dm!n/about/{about}/edit', 'DashboardController@editAbout')->name('editAbout');
 Route::put('/t@k3m3t0@dm!n/about/{about}', 'DashboardController@updateAbout')->name('updatePost');
+
+    // SHOP
+Route::get('/shop', 'ShopController@index');
+Route::get('/shop/{shop}', 'ShopController@show');
+Route::get('/t@k3m3t0@dm!n/shop/addItem', 'DashboardController@addItem')->name('addItem');
+Route::post('/t@k3m3t0@dm!n/shop', 'DashboardController@storeItem')->name('storeItem');
+Route::get('/t@k3m3t0@dm!n/shop/{shop}/edit', 'DashboardController@editItem')->name('editItem');
+Route::put('/t@k3m3t0@dm!n/shop/{shop}', 'DashboardController@updateItem')->name('updateItem');
+Route::delete('/t@k3m3t0@dm!n/shop/{shop}', 'DashboardController@deleteItem')->name('deleteItem');

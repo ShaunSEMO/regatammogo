@@ -13,7 +13,7 @@
         <br>
         <p>{!! str_limit($post->body, $limit = 20, $end = '...') !!}</p>
         <br>
-        <a href="/valrey/public/blog/{{ $post->id }}">Read More</a>
+        <a href="blog/{{ $post->id }}">Read More</a>
         <br><hr>
         @endforeach
         {{ $posts->links() }}

@@ -32,6 +32,7 @@
         @yield('about')
         @yield('blog')
         @yield('gallery')
+        @yield('shop')
         @yield('create')
 
     <br><br>

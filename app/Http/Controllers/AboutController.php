@@ -12,7 +12,7 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $abouts = DB::table('about')->orderBy('id', 'DESC');
+        $abouts = DB::table('abouts')->orderBy('id', 'DESC');
         $abouts = $abouts->get();
 
         return view('home.about', compact(['abouts']));
