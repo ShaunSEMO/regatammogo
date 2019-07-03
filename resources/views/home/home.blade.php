@@ -2,6 +2,13 @@
 
 @section('home')
 
-<h1>Home</h1>
+@include('home.sections.about-sec')
+<br>
+@include('home.sections.blog-sec')
+<br>
+@include('home.sections.gallery-sec')
+<br>
+@include('home.sections.shop-sec')
+<br>
 
 @endsection

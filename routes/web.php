@@ -15,9 +15,11 @@ Route::get('/', 'IndexController@index');
 
 Route::get('/about', 'AboutController@index');
 
-Route::resource('blog', 'BlogController');
+Route::resource('/blog', 'BlogController');
 
-Route::resource('gallery', 'GalleryController');
+Route::get('/shop', 'ShopController@index');
+
+Route::resource('/gallery', 'GalleryController');
 
 
 // Authentication Routes...
@@ -57,7 +59,6 @@ Route::get('/t@k3m3t0@dm!n/about/{about}/edit', 'DashboardController@editAbout')
 Route::put('/t@k3m3t0@dm!n/about/{about}', 'DashboardController@updateAbout')->name('updatePost');
 
     // SHOP
-Route::get('/shop', 'ShopController@index');
 Route::get('/shop/{shop}', 'ShopController@show');
 Route::get('/t@k3m3t0@dm!n/shop/addItem', 'DashboardController@addItem')->name('addItem');
 Route::post('/t@k3m3t0@dm!n/shop', 'DashboardController@storeItem')->name('storeItem');

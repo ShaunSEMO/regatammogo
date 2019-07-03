@@ -15,6 +15,6 @@ class AboutController extends Controller
         $abouts = DB::table('abouts')->orderBy('id', 'DESC');
         $abouts = $abouts->get();
 
-        return view('home.about', compact(['abouts']));
+        return view('about.about', compact(['abouts']));
     }
 }

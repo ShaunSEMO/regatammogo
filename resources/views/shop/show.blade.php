@@ -11,7 +11,7 @@
         <br>
         <h6>Size: {!! $item->size !!}</h6>
         <br>
-        <p>Size: {!! $item->description !!}</p>
+        <p>Description: {!! $item->description !!}</p>
         <br>
         <h5>Price: {!! $item->price !!}</h5>
 

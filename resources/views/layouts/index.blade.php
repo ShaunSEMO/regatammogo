@@ -25,8 +25,38 @@
   </head>
   <body id='body'>
 
-    <p>Main layout</p>
-    <br><br>
+    {{-- navbar --}}
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+
+        <a class="navbar-brand" href="{{ url('/') }}">_Valrey</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('about') }}">About <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('blog') }}">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('gallery') }}">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('shop') }}">Shop</a>
+                  </li>
+              </ul>
+
+        </div>
+
+      </nav>
+      {{-- navbar --}}
+
+    <br>
 
         @yield('home')
         @yield('about')
@@ -34,10 +64,6 @@
         @yield('gallery')
         @yield('shop')
         @yield('create')
-
-    <br><br>
-    <p>Main layout</p>
-
 
 
     <!-- Optional JavaScript -->
