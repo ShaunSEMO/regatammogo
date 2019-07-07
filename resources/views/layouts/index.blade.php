@@ -14,47 +14,59 @@
     {{-- Custom css --}}
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sections/about.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sections/services.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sections/pricing.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sections/contact.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sections/events.css') }}" rel="stylesheet">
 
     <!-- JS -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <title>Valrey</title>
+    <title>Regatammogo</title>
   </head>
   <body id='body'>
 
-    {{-- navbar --}}
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+      {{-- Header section --}}
+      <div id="header">
 
-        <a class="navbar-brand" href="{{ url('/') }}">_Valrey</a>
+        {{-- navbar --}}
+        <nav class="navbar navbar-dark navbar-expand-lg">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
+            <a class="navbar-brand" href="{{ url('/') }}">Regatammogo</a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fas fa-bars"></i>
+            </button>
 
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('about') }}">About <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('blog') }}">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('gallery') }}">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('shop') }}">Shop</a>
-                  </li>
-              </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
 
-        </div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url('about') }}">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url('upcomingevents') }}">Upcoming Events</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url('programs') }}">Programs Offered</a>
+                    </li>
+                  </ul>
 
-      </nav>
+            </div>
+
+          </nav>
       {{-- navbar --}}
+
+      {{-- Header content --}}
+        <div class="container" id="headerContent">
+
+          <h1 id="heading"><strong>Regatammogo</strong></h1>
+            <br>
+          <p id="subheading">We step together</p>
+            <br>
+          
+        </div>
+      {{-- Header content --}}
+
+      </div>
+      {{-- Header section --}}
+
 
     <br>
 

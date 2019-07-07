@@ -12,5 +12,16 @@
             <br>
             @endforeach
     </div>
+    <br>
+    <br>
+    <div class="container">
+        <h1 style="color: lightslategray;">"Our moto is that no sports advancement without educational excellence and adequate life skills."</h1>
+    </div>
+    <br>
+    <br>
+    @include('home.sections.sponsors-sec')
+    <br>
+    @include('home.sections.contact-sec')
+    <br>
 
 @endsection

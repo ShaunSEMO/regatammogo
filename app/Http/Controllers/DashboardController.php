@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
-use App\Picture;
 use App\About;
-use App\Item;
+use App\UpcomingEvent;
+use App\Program;
+// use App\Post;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -33,155 +33,15 @@ class DashboardController extends Controller
     {
         $abouts = DB::table('abouts')->orderBy('id', 'DESC');
         $abouts = $abouts->get();
-        $posts = DB::table('posts')->orderBy('id', 'DESC')->paginate(3);
-        $pictures = DB::table('pictures')->orderBy('id', 'DESC')->paginate(3);
-        $items = DB::table('items')->orderBy('id', 'DESC')->paginate(3);
+        $events = DB::table('upcoming_events')->orderBy('id', 'DESC');
+        $events = $events->get();
+        // $posts = DB::table('posts')->orderBy('id', 'DESC')->paginate(3);
+        $programs = DB::table('programs')->orderBy('id', 'DESC');
+        $programs = $programs->get();
 
-        return view('dashboard.admin', compact(['posts', 'pictures', 'abouts', 'items']));
+        return view('dashboard.admin', compact(['abouts', 'events', 'programs']));
     }
 
-
-    // blog functions
-
-    public function createPost()
-    {
-        return view('dashboard.blog.createpost');
-    }
-
-    public function storePost(Request $request)
-    {
-        $this->validate($request, [
-            'image' => 'required|image|max:1999',
-            'title' => 'required',
-            'body' => 'required',
-        ]);
-        
-        //File uploading
-        if($request->hasFile('image')) {
-            //Get filename with extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/img/blogimages', $filenameWithExt);
-
-            //Get just filename
-            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-            // //Get just the extension
-            // $extension = $request->file('image')->getOriginalClientExtension();
-            // // Filename to store
-
-            // $fileNameToStore = $filename.$extension;
-        } else {
-            $fileNameToStore = 'No image here.';
-        }
-
-        //Create post
-        $post = new Post;
-        $post->image = 'storage/img/blogimages/'.$request->file('image')->getClientOriginalName();
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
-
-        return redirect('/t@k3m3t0@dm!n');
-    }
-
-    public function edit($id)
-    {
-        $post = Post::find($id);
-        return view('dashboard.blog.editpost', compact(['post']));
-
-    }
-
-    public function updatePost(Request $request, $id)
-    {
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-        ]);
-
-        if($request->hasFile('image')) {
-            //Get filename with extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/img/blogimages', $filenameWithExt);
-
-            //Get just filename
-            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-            // //Get just the extension
-            // $extension = $request->file('image')->getOriginalClientExtension();
-            // // Filename to store
-
-            // $fileNameToStore = $filename.$extension;
-        } else {
-            $fileNameToStore = 'No image here.';
-        }
-
-        $post = Post::find($id);
-        $img = $request->file('image');
-        if ($img != null) {
-            $post->image = 'storage/img/blogimages/'.$img->getClientOriginalName();
-        } else {
-            $post->image = $post->image;
-        }
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
-
-        return redirect('/t@k3m3t0@dm!n');
-    }
-
-    public function destroyPost($id)
-    {
-        $post = Post::find($id);
-        $post->delete();
-        return redirect('/t@k3m3t0@dm!n');
-
-    }
-
-    // gallery functions
-    public function createPicture()
-    {
-        return view('dashboard.gallery.createpicture');
-    }
-
-    public function storePicture(Request $request)
-    {
-        $this->validate($request, [
-            'image' => 'image|max:1999',
-        ]);
-        
-        //File uploading
-        if($request->hasFile('image')) {
-            //Get filename with extension
-            $filenameWithExt = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/img/galleryimages', $filenameWithExt);
-
-            //Get just filename
-            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-            // //Get just the extension
-            // $extension = $request->file('image')->getOriginalClientExtension();
-            // // Filename to store
-
-            // $fileNameToStore = $filename.$extension;
-        } else {
-            $fileNameToStore = 'No image here.';
-        }
-
-        //Create post
-        $picture = new Picture;
-        $picture->image = 'storage/img/galleryimages/'.$request->file('image')->getClientOriginalName();
-        $picture->save();
-
-        return redirect('/t@k3m3t0@dm!n');
-    }
-
-    public function destroyPicture($id)
-    {
-        $picture = Picture::find($id);
-        $picture->delete();
-        return redirect('/t@k3m3t0@dm!n');
-
-    }
 
     // About functions
     public function editAbout($id)
@@ -201,7 +61,8 @@ class DashboardController extends Controller
         if($request->hasFile('image')) {
             //Get filename with extension
             $filenameWithExt = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/img/blogimages', $filenameWithExt);
+            $path = $request->file('image')->storeAs('public/img/aboutimages/', $filenameWithExt);
+
 
             //Get just filename
             // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -216,26 +77,33 @@ class DashboardController extends Controller
         }
 
         $about = About::find($id);
-        $about->image = 'storage/img/blogimages/'.$request->file('image')->getClientOriginalName();
+        $about->image = '/storage/img/aboutimages/'.$filenameWithExt;
         $about->body = $request->input('body');
         $about->save();
 
         return redirect('/t@k3m3t0@dm!n');
     }
 
-    //SHOP FUNCTIONS
+    // UPCOMING EVENTS FUNCTIONS
 
-    public function addItem() {
-        return view('shop.addItem');
+    public function createEvent()
+    {
+        return view('dashboard.upcomingevents.createEvent');
     }
 
-    public function storeItem(Request $request) {
+    public function storeEvent(Request $request)
+    {
+        $this->validate($request, [
+            'image' => 'required|image|max:1999',
+            'place' => 'required',
+            'date' => 'required',
+        ]);
         
         //File uploading
         if($request->hasFile('image')) {
             //Get filename with extension
             $filenameWithExt = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/img/shopimages', $filenameWithExt);
+            $path = $request->file('image')->storeAs('public/img/upcomingevents', $filenameWithExt);
 
             //Get just filename
             // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -249,35 +117,36 @@ class DashboardController extends Controller
             $fileNameToStore = 'No image here.';
         }
 
-        //Store new item
-        $item = new Item;
-        $item->image = 'storage/img/shopimages/'.$request->file('image')->getClientOriginalName();
-        $item->name = $request->input('name');
-        $item->color = $request->input('color');
-        $item->size = $request->input('size');
-        $item->description = $request->input('description');
-        $item->price = $request->input('price');
-        $item->save();
+        //Create post
+        $event = new UpcomingEvent;
+        $event->image = 'storage/img/upcomingevents/'.$request->file('image')->getClientOriginalName();
+        $event->place = $request->input('place');
+        $event->date = $request->input('date');
+        $event->description = $request->input('description');
+        $event->save();
 
         return redirect('/t@k3m3t0@dm!n');
-        
     }
 
-    public function editItem($id) {
-        $item = Item::find($id);
-        return view('shop.editItem', compact(['item']));
+    public function editEvent($id)
+    {
+        $event = UpcomingEvent::find($id);
+        return view('dashboard.upcomingevents.editEvent', compact(['event']));
+
     }
 
-    public function updateItem(Request $request, $id) {
-
+    public function updateEvent(Request $request, $id)
+    {
         $this->validate($request, [
-            'image' => 'required',
+            'place' => 'required',
+            'date' => 'required',
         ]);
-
+        
+        //File uploading
         if($request->hasFile('image')) {
             //Get filename with extension
             $filenameWithExt = $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('public/img/blogimages', $filenameWithExt);
+            $path = $request->file('image')->storeAs('public/img/upcomingevents', $filenameWithExt);
 
             //Get just filename
             // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -291,23 +160,125 @@ class DashboardController extends Controller
             $fileNameToStore = 'No image here.';
         }
 
-        $item = Item::find($id);
-        $item->image = 'storage/img/blogimages/'.$request->file('image')->getClientOriginalName();
-        $item->name = $request->input('name');
-        $item->color = $request->input('color');
-        $item->size = $request->input('size');
-        $item->description = $request->input('description');
-        $item->price = $request->input('price');
-        $item->save();
+        //Create post
+        $event = UpcomingEvent::find($id);
+        $img = $request->file('image');
+        if ($img != null) {
+            $event->image = 'storage/img/blogimages/'.$img->getClientOriginalName();
+        } else {
+            $event->image = $event->image;
+        }
+        $event->place = $request->input('place');
+        $event->date = $request->input('date');
+        $event->description = $request->input('description');
+        $event->save();
 
         return redirect('/t@k3m3t0@dm!n');
-          
     }
 
-    public function deleteItem($id) {
-        $item = Item::find($id);
-        $item->delete();
+    public function destroyEvent($id)
+    {
+        $event = UpcomingEvent::find($id);
+        $event->delete();
+        return redirect('/t@k3m3t0@dm!n');
+
+    }
+
+    // Programs functions
+
+    public function createProgram() {
+        return view('dashboard.programs.createProgram');
+    }
+
+    public function storeProgram(Request $request)
+    {
+        $this->validate($request, [
+            'image' => 'required|image|max:1999',
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        
+        //File uploading
+        if($request->hasFile('image')) {
+            //Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('public/img/programpictures', $filenameWithExt);
+
+            //Get just filename
+            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            // //Get just the extension
+            // $extension = $request->file('image')->getOriginalClientExtension();
+            // // Filename to store
+
+            // $fileNameToStore = $filename.$extension;
+        } else {
+            $fileNameToStore = 'No image here.';
+        }
+
+        //Create post
+        $program = new Program;
+        $program->image = 'storage/img/programpictures/'.$request->file('image')->getClientOriginalName();
+        $program->title = $request->input('title');
+        $program->body = $request->input('description');
+        $program->save();
+
         return redirect('/t@k3m3t0@dm!n');
     }
-    
+
+    public function editProgram($id)
+    {
+        $program = Program::find($id);
+        return view('dashboard.programs.editProgram', compact(['program']));
+
+    }
+
+    public function updateProgram(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        
+        //File uploading
+        if($request->hasFile('image')) {
+            //Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('public/img/programpictures', $filenameWithExt);
+
+            //Get just filename
+            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            // //Get just the extension
+            // $extension = $request->file('image')->getOriginalClientExtension();
+            // // Filename to store
+
+            // $fileNameToStore = $filename.$extension;
+        } else {
+            $fileNameToStore = 'No image here.';
+        }
+
+        //Create post
+        $program = Program::find($id);
+        $img = $request->file('image');
+        if ($img != null) {
+            $program->image = 'storage/img/programpictures/'.$img->getClientOriginalName();
+        } else {
+            $program->image = $program->image;
+        }
+        $program->title = $request->input('title');
+        $program->body = $request->input('description');
+        $program->save();
+
+        return redirect('/t@k3m3t0@dm!n');
+    }
+
+    public function destroyProgram($id)
+    {
+        $program = Program::find($id);
+        $program->delete();
+        return redirect('/t@k3m3t0@dm!n');
+
+    }
+
 }

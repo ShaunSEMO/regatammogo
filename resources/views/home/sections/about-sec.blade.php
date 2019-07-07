@@ -1,11 +1,14 @@
-<div class="container">
+<div class="container sec-cont">
+    <h1 class="sec-heading">About us</h1>
+        <br>
     @foreach($abouts as $about)
-    <br>
-    <img class="img-fluid" src="{{ asset($about->image) }}" alt="{{ asset($about->image) }}">
-    <br>
-    <br>
-    <p>{!! str_limit($about->body, $limit = 150, $end = '...') !!}</p>
-    <a href="{{ url('about') }}" class="btn btn-dark">Read more</a>
+            <br>
+        <img id="about-img" class="img-fluid" src="{{ asset($about->image) }}" alt="{{ asset($about->image) }}">
+            <br>
+            <br>
+        <p id="about-p">{!! str_limit($about->body, $limit = 250, $end = '...') !!}</p>
+        <br>
+        <a class="btn btn-dark site-btn" href="{{ url('about') }}">Read more</a>
     @endforeach
 </div>
 

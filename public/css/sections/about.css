@@ -1,0 +1,15 @@
+#about-img {
+    border-radius: 50%;
+    width: 220px;
+}
+
+#about-p {
+    margin: auto;
+}
+
+@media (min-width: 700px) {
+    #about-p {
+        width: 650px;
+    }
+  }
+  
