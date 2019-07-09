@@ -2,20 +2,23 @@
 
 @section('about')
 
-    <div class="container">
+    <div data-aos="zoom-in-up" class="container sec-cont">
+        <h1 class="sec-heading">About us</h1>
+        <hr class="heading-ul">
+        <br>
             @foreach($abouts as $about)
             <br>
-            <img style="width:50%;" class="img-fluid" src="{{ asset($about->image) }}" alt="Post header image">
+            <img id="about-img" class="img-fluid" src="{{ asset($about->image) }}" alt="Post header image">
             <br>
             <br>
-            <p>{!! $about->body!!}</p>
+            <p id="about-p">{!! $about->body!!}</p>
             <br>
             @endforeach
     </div>
     <br>
     <br>
-    <div class="container">
-        <h1 style="color: lightslategray;">"Our moto is that no sports advancement without educational excellence and adequate life skills."</h1>
+    <div data-aos="fade-up" class="container">
+        <h1 class="bg-text" style="color: lightslategray;">"Our moto is that no sports advancement without educational excellence and adequate life skills."</h1>
     </div>
     <br>
     <br>

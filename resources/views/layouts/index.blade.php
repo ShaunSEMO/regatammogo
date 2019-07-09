@@ -15,6 +15,10 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sections/about.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sections/events.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sections/programs.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sections/sponsors.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sections/contact.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- JS -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,7 +32,7 @@
         {{-- navbar --}}
         <nav class="navbar navbar-dark navbar-expand-lg">
 
-            <a class="navbar-brand" href="{{ url('/') }}">Regatammogo</a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img width="50px" height="50px" style="border-radius: 50%;" src="{{ asset('/img/navlogo.png') }}"></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <i class="fas fa-bars"></i>
@@ -56,9 +60,9 @@
       {{-- Header content --}}
         <div class="container" id="headerContent">
 
-          <h1 id="heading"><strong>Regatammogo</strong></h1>
+          <h1 data-aos="flip-left" id="heading"><strong>Regatammogo</strong></h1>
             <br>
-          <p id="subheading">We step together</p>
+          <p data-aos="flip-right" id="subheading">We step together</p>
             <br>
           
         </div>
@@ -77,11 +81,36 @@
         @yield('shop')
         @yield('create')
 
+      {{-- footer --}}
+       <br><br>
+      <footer>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <small>Copyright © 2019 | All rights reserved to Regatammogo</small>
+                    <br>
+                    <br>
+                    <small>makgoka@regatammogo.co.za</small>
+                    <br>
+                    <br>
+                    <small> <a href="http://www.regatammogo.org">www.regatammogo.org</a></small>
+                    <br><br>
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-12">
+                    <small class="swbranding">
+                      Site designed and developed by <a href="http://www.spyderwebs.co.za"><span class="spyder">Spyder</span><span class="webs">Webs</span>.co.za</a>  
+                    </small>
+                </div>
+            </div>
+      </footer>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
+      
+
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init({
+          duration:700
+        });
+      </script>
   </body>
 </html>

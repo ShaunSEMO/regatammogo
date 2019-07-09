@@ -16,10 +16,56 @@
 }
 
 .custom-card {
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 20px 20px;
     /* margin-top: 20px; */
+}
+
+
+.heading-ul {
+    width: 60px;
+    height: 4px;
+    background-color: #914400b9;
+}
+
+.sub-ul {
+    width: 60px;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.1)
+}
+
+.bg-text {
+    text-align: center;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 3px;
+    
+}
+
+@media (min-width: 700px) {
+    .moto-cont {
+        width: 650px;
+    }
+
+    .admin-card {
+        margin: auto;
+    }
+
+    .panel {
+        width: 600px;
+        margin: auto;
+    }
+    
+
+  }
+
+.panel-div {
+    padding: 20px 20px;
+}
+
+.admin-card {
+    margin: auto;
 }
 
 /* END Variable stylings */
@@ -27,7 +73,7 @@
 
 #header {
     background-image: url("../img/headerbg.png");
-    background-position: absolute;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -36,7 +82,7 @@
 }
 
 .navbar {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.0);
 }
 
 #headerContent * {
@@ -44,11 +90,10 @@
 }
 
 #headerContent {
-    margin-top: 180px;
+    margin-top: 200px;
 }
 
 #heading {
-    background-color: black;
     width: 280px;
     margin: auto;
     font-size: 40px;
@@ -56,5 +101,40 @@
 
 #subheading {
     font-size: 20px;
+}
+
+footer {
+    background-color: rgb(90, 90, 90);
+    padding: 15px 15px;
+}
+
+footer * {
+    color: white;
+    font-size: 15px;
+}
+
+.spyder {
+    color: rgb(255, 0, 0);
+    font-size: 18px;
+}
+
+.webs {
+    color: rgb(104, 232, 255);
+    font-size: 18px;
+}
+
+@media (min-width: 700px) {
+    .swbranding {
+        float: right;
+        font-size: 15px;
+    }
+
+    .register-form {
+        width: 600px;
+    }
+}
+
+.field-label {
+    float: left;
 }
 

@@ -14,4 +14,11 @@ class UpcomingEventsController extends Controller
 
         return view('upcomingEvents.upcomingEvents', compact(['events']));
     }
+
+    public function register($id) {
+        $events = UpcomingEvent::find($id);
+
+        return view('upcomingEvents.registerEvent', compact(['events']));
+    }
+
 }

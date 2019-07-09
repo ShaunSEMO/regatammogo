@@ -14,6 +14,7 @@
 Route::get('/', 'IndexController@index');
 Route::get('/about', 'AboutController@index');
 Route::get('/upcomingevents', 'UpcomingEventsController@index');
+Route::get('/upcomingevents/{upcomingevents}', 'UpcomingEventsController@register');
 Route::get('/programs', 'ProgramsController@index');
 
 // Authentication Routes...

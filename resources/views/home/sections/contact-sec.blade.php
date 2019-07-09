@@ -1,27 +1,31 @@
 <br>
-<div class="container sec-cont">
+<div data-aos="fade-down" class="container sec-cont">
     <h1 class="sec-heading">Get in touch with us</h1>
+    <hr class="heading-ul">
     <br>
-    
+    <br>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-4">
-                <img style="width: 80px; border:" src="{{ asset('img/social/facebook.png') }}" alt="">
-            </div>
+            <div class="icons container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-4">
+                        <img class="ic1" src="{{ asset('img/social/facebook.png') }}" alt="">
+                    </div>
 
-            <div class="col-lg-4 col-md-4 col-4">
-                <img style="width: 80px; border:" src="{{ asset('img/social/instagram.png') }}" alt="">
-            </div>
+                    <div class="col-lg-4 col-md-4 col-4">
+                        <img class="ic2" src="{{ asset('img/social/instagram.png') }}" alt="">
+                    </div>
 
-            <div class="col-lg-4 col-md-4 col-4">
-                <img style="width: 80px; border:" src="{{ asset('img/social/twitter.png') }}" alt="">
+                    <div class="col-lg-4 col-md-4 col-4">
+                        <img class="ic3" src="{{ asset('img/social/twitter.png') }}" alt="">
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
-
-    <form action="https://formspree.io/info@spyderwebs.co.za " method="POST">
+    <br>
+    <br>
+    <form data-aos="fade-down" class="form" action="https://formspree.io/info@spyderwebs.co.za " method="POST">
         {{ csrf_field() }}
-        <div class="form-group">
+        <div  class="form-group">
                 @if (Session::has('file_message'))
                     <div class="alert alert-success" role="alert">
                         {{Session::get('file_message')}}

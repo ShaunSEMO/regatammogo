@@ -45,7 +45,7 @@
         
         <div class="form-group">
             {{ Form::label('description', 'Description') }}<br>
-            {{ Form::textArea('description', $program->description, ['class' => 'form-control', 'placeholder' => 'Program description', 'class' => 'summary-ckeditor']) }}
+            {{ Form::textArea('description', $program->body, ['class' => 'form-control', 'placeholder' => 'Program description', 'class' => 'summary-ckeditor']) }}
         </div>
 
         {{Form::hidden('_method', 'PUT')}}

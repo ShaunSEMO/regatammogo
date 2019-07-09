@@ -2,9 +2,8 @@
 
 @section('content')
 
-<div class="row justify-content-md-center">
+<div class="panel container row justify-content-md-center">
 
-    <div class="container">
       <div class="container">
         <a href="{{ url('/') }}" class="btn btn-primary">Go to website</a>
         <br>
@@ -22,18 +21,18 @@
             </h5>
           </div>
       
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div style="text-align:center" class="card-body">
-                           @foreach($abouts as $about)
-                            <a href="{{ url('/t@k3m3t0@dm!n/about/'.$about->id.'/edit') }}" class="btn btn-primary">Edit About</a>
-                            <br>
-                            <br>
-                            <img style="width:50%;" class="img-fluid" src="{{ asset($about->image) }}" alt="{{ url($about->image) }}">
-                            <br>
-                            <br>
-                            <p>{!! $about->body!!}</p>
-                            <br>
-                            @endforeach
+          <div id="collapseOne" class="panel-div collapse container" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div style="text-align:center"  class="card-body custom-card admin-card">
+                    @foreach($abouts as $about)
+
+                        <br>
+                        <img id="about-img" class="img-fluid" src="{{ asset($about->image) }}" alt="{{ asset($about->image) }}">
+                        <br>
+                        <br>
+                        <p>{!! str_limit($about->body, $limit = 250, $end = '...') !!}</p>
+                        <br>
+                        <a href="{{ url('/t@k3m3t0@dm!n/about/'.$about->id.'/edit') }}" class="btn btn-primary">Edit About</a>
+                    @endforeach
                 </div>
           </div>
         </div>
@@ -48,13 +47,16 @@
               </h5>
             </div>
         
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div style="text-align:center" class="card-body">
-                      <a href="{{ url('/t@k3m3t0@dm!n/upcomingevents/create') }}" class="btn btn-primary">Create Event</a>
+            <div id="collapseTwo" class="panel-div collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <a style="margin:auto" href="{{ url('/t@k3m3t0@dm!n/upcomingevents/create') }}" class="btn btn-primary">Create Event</a>
+                <br>
+                <br>
+                  <div style="text-align:center" class="card-body custom-card admin-card">
+                      
                           <br>
                           <br> 
                              @foreach($events as $event)
-                              <img style="width:50%;" class="img-fluid" src="{{ asset($event->image) }}" alt="{{ url($event->image) }}">
+                              <img class="img-fluid" src="{{ asset($event->image) }}" alt="{{ url($event->image) }}">
                               <br>
                               <br>
                               <h5>{!! $event->place!!}</h5>
@@ -63,13 +65,13 @@
                               <br>
                               <p>{!! $event->description!!}</p>
                               <br><br>
-                              <div class="btn-group" role="group" aria-label="Basic example">
                                   <a href="{{ url('/t@k3m3t0@dm!n/upcomingevents/'.$event->id.'/edit') }}" class="btn btn-warning">Edit event</a>
+                                  <br>
+                                  <br>
                                   {!! Form::open(['action' => ['DashboardController@destroyEvent', $event->id], 'method' => 'POST']) !!}
                                       {{ Form::hidden('_method', 'DELETE') }}
                                       {{ Form::submit('Delete event', ['class' => 'btn btn-danger'])}}
                                   {!!Form::close()!!}
-                              </div>
                               <hr>
                               @endforeach
                           <br>       
@@ -88,26 +90,30 @@
                 </h5>
               </div>
           
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div style="text-align:center" class="card-body">
-                        <a href="{{ url('/t@k3m3t0@dm!n/programs/create') }}" class="btn btn-primary">Add new program</a>
+              <div id="collapseThree" class="panel-div collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+
+                  <a style="margin:auto" href="{{ url('/t@k3m3t0@dm!n/programs/create') }}" class="btn btn-primary">Add new program</a>
+                  <br>
+                  <br>
+                    <div style="text-align:center" class="admin-card custom-card" >
+                        
                             <br>
                             <br> 
                                @foreach($programs as $program)
-                                <img style="width:50%;" class="img-fluid" src="{{ asset($program->image) }}" alt="{{ url($program->image) }}">
+                                <img class="img-fluid" src="{{ asset($program->image) }}" alt="{{ url($program->image) }}">
                                 <br>
                                 <br>
                                 <h5>{!! $program->title!!}</h5>
                                 <br>
                                 <p>{!! $program->body!!}</p>
                                 <br>
-                                <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="{{ url('/t@k3m3t0@dm!n/programs/'.$program->id.'/edit') }}" class="btn btn-warning">Edit program</a>
+                                    <br>
+                                    <br>
                                     {!! Form::open(['action' => ['DashboardController@destroyProgram', $program->id], 'method' => 'POST']) !!}
                                         {{ Form::hidden('_method', 'DELETE') }}
                                         {{ Form::submit('Delete program', ['class' => 'btn btn-danger'])}}
                                     {!!Form::close()!!}
-                                </div>
                                 <br>
                                 <hr>
                                 @endforeach
@@ -117,7 +123,6 @@
             </div>
 
     </div>
-</div>
 </div>
 
 </div>

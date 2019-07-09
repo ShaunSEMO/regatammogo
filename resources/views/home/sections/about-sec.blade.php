@@ -1,5 +1,6 @@
-<div class="container sec-cont">
+<div data-aos="zoom-in-up" class="container sec-cont">
     <h1 class="sec-heading">About us</h1>
+    <hr class="heading-ul">
         <br>
     @foreach($abouts as $about)
             <br>

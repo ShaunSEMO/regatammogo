@@ -1,0 +1,9 @@
+.sponsor-img {
+    width: 70px;
+}
+
+@media (min-width: 900px) {
+    .sponsor-img {
+        width: 150px;
+    }
+}

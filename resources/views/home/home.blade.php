@@ -9,12 +9,13 @@
 @include('home.sections.programs-sec')
 <br>
 <br>
-<div class="container">
-    <h1 style="color: lightslategray;">"Our moto is that no sports advancement without educational excellence and adequate life skills."</h1>
+<div data-aos="fade-up" class="container moto-cont">
+    <h1 class="bg-text" style="color: lightslategray;">"Our moto is that no sports advancement without educational excellence and adequate life skills."</h1>
 </div>
 <br>
 <br>
 @include('home.sections.sponsors-sec')
+<br>
 <br>
 @include('home.sections.contact-sec')
 <br>
